@@ -75,14 +75,14 @@ tr:nth-child(even){
     background-color: #fff;
 }
 tr:nth-child(odd){
-    background-color:#eee;
+    background-color:peru;
    
 }
 .error-message2,.error-message1{
 font-size: small;
 }
 button{
-    background-color:aqua;
+    background-color: #EBD4C0;
     text-decoration: none;
     color: black;
  width: max-content;
