@@ -41,9 +41,15 @@ function calculateChange(val){
 next.addEventListener('click',function show(){
     showmsg.style.display = "none";
     if(billAmount.value.length == 0){
-        showMessage(message1,"Kindly Enter Valid Bill amount");
-    
-     
+        showMessage(message1,"Kindly Enter Valid Bill amount.Don't keep it blank");
+
+
+    }
+    else if(billAmount.value == 0){
+        showMessage(message1, "Zero value is not valid");
+    }
+    else if(billAmount.value < 0){
+        showMessage(message1, "Negative  value is not valid");
     }
 else{
             hideMsg(message1);
@@ -56,21 +62,28 @@ else{
 
 });
 
-
-
-checkButton.addEventListener("click", function validateBillAndCashAmount() {
+function validateBillAndCashAmount(){
+    if(cashGiven.value.length == 0){
   
-   
- if(cashGiven.value.length == 0){
-  
-    showMessage(message2, 'Kindly enter valid cash value');
-   
+        showMessage(message2, "Kindly enter valid cash value. It can't be blank");
+       
+         
+     }
      
- }
-
-
+    else if(cashGiven.value == 0){
+        showMessage(message2, "Cash value should not be zero ,it  is not valid");
+    }
+    else if(cashGiven.value < 0){
+        showMessage(message2, "Cash value should not be negative, it is not valid");
+    }
+    else if( cashGiven.value < billAmount.value){
+    showMessage(message2, "The cash provided should be greater than the bill amount.");
  
-else if(billAmount.value <= cashGiven.value){
+        
+    }
+
+    else if(billAmount.value <=  cashGiven.value){
+   
     table.style.display = 'block';
     showmsg.style.display = "block";
     
@@ -79,18 +92,15 @@ else if(billAmount.value <= cashGiven.value){
     calculateChange(diff);
 
 
-}
-else if(billAmount.value > cashGiven.value){
-    showMessage(message2, "The cash provided should be greater than the bill amount.")
- 
-     
-}
+    }   };
 
 
- 
+
+checkButton.addEventListener("click", validateBillAndCashAmount);
+  
    
-   
-});
+
+
 // function to hide the default msg, so that body appears only on wrong inputs
 function hideMsg(message){
     message.style.display = "none";
@@ -99,5 +109,7 @@ function hideMsg(message){
 function showMessage(containr, msg){
     // console.log(msg);
     containr.style.display ="block";
+    containr.style.color = "red";
         containr.innerText = msg;
+        
 }
