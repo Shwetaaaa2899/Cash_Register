@@ -61,9 +61,16 @@ else{
     
 
 });
+function makeNone(){
+    table.style.display = 'none';
+    showmsg.style.display = "none";
+};
 
-function validateBillAndCashAmount(){
-    if(cashGiven.value.length == 0){
+
+    function getANS(){
+    
+        
+   if(cashGiven.value.length == 0){
   
         showMessage(message2, "Kindly enter valid cash value. It can't be blank");
        
@@ -76,13 +83,15 @@ function validateBillAndCashAmount(){
     else if(cashGiven.value < 0){
         showMessage(message2, "Cash value should not be negative, it is not valid");
     }
-    else if( cashGiven.value < billAmount.value){
+    else if( Number(cashGiven.value) < Number(billAmount.value)){
     showMessage(message2, "The cash provided should be greater than the bill amount.");
  
         
     }
 
-    else if(billAmount.value <=  cashGiven.value){
+    else  if( Number(cashGiven.value) > Number(billAmount.value)){
+        showMessage(message2, "The change to be returned is displayed below 😄.");
+ 
    
     table.style.display = 'block';
     showmsg.style.display = "block";
@@ -94,9 +103,9 @@ function validateBillAndCashAmount(){
 
     }   };
 
+    // if(billAmount.value <=  cashGiven.value)
 
-
-checkButton.addEventListener("click", validateBillAndCashAmount);
+checkButton.addEventListener("click", getANS);
   
    
 
